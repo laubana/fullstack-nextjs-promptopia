@@ -1,6 +1,22 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Feed from "@components/Feed";
 
-const Home = () => {
+const HomeView = () => {
+  const [prompts, setPrompts] = useState(undefined);
+
+  useEffect(() => {
+    const main = async () => {
+      const response = await fetch("/api/prompts", { method: "GET" });
+      const data = (await response.json()).data;
+
+      setPrompts(data);
+    };
+
+    main();
+  }, []);
+
   return (
     <section className="flex flex-col items-center justify-center w-full">
       <h1 className="font-extrabold leading-tight mt-5 text-5xl text-black text-center sm:text-6xl">
@@ -14,9 +30,9 @@ const Home = () => {
         Promptopia is an open-source AI prompting tool for modern world to
         discover, create and share creative prompts
       </p>
-      <Feed />
+      <Feed prompts={prompts} />
     </section>
   );
 };
 
-export default Home;
+export default HomeView;
