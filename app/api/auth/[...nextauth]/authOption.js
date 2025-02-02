@@ -3,7 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 
 import { connect } from "@configs/db";
-import User from "@models/_User";
+import User from "@models/User";
 
 export const authOptions = {
   providers: [
