@@ -1,6 +1,6 @@
 import session from "@middlewares/session";
 import { connect } from "@configs/db";
-import User from "@models/User";
+import User from "@models/_User";
 
 export const POST = async (req, { params }) => {
   return session(req, async (req) => {

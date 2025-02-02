@@ -1,6 +1,6 @@
 import session from "@middlewares/session";
 import { connect } from "@configs/db";
-import Prompt from "@models/Prompt";
+import Prompt from "@models/_Prompt";
 
 export const POST = async (req, { params }) => {
   return session(req, async (req) => {

@@ -1,5 +1,5 @@
 import { connect } from "@configs/db";
-import Prompt from "@models/Prompt";
+import Prompt from "@models/_Prompt";
 
 export const GET = async (req, { params }) => {
   try {
