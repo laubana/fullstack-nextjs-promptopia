@@ -67,6 +67,12 @@ const Navigation = () => {
                 >
                   Sign In
                 </Link>
+                <Link
+                  href="/signUp"
+                  className="font-inter font-medium text-gray-700 text-lg hover:text-gray-500"
+                >
+                  Sign Up
+                </Link>
               </>
             )}
           </>

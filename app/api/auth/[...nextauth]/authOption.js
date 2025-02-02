@@ -1,8 +1,9 @@
 import NextAuth from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
+
 import { connect } from "@configs/db";
-import User from "@models/user";
+import User from "@models/User";
 
 export const authOptions = {
   providers: [
@@ -33,7 +34,7 @@ export const authOptions = {
 
         const user = await User.findOne({
           email: profile?.email || credentials?.email,
-        });
+        }).lean();
 
         if (user) {
           return true;

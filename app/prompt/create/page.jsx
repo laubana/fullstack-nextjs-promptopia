@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
+
 import Protect from "@components/Protect";
 import Form from "@components/Form";
 
@@ -17,6 +18,12 @@ const PromptCreateView = () => {
     setIsSubmitting(true);
 
     try {
+      if (!form.prompt || !form.category) {
+        alert("Invalid Input");
+
+        return;
+      }
+
       const response = await fetch("/api/prompt", {
         method: "POST",
         body: JSON.stringify({ ...form, userId: session?.user.id }),

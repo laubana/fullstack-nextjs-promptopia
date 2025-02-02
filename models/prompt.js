@@ -1,21 +1,21 @@
-import { Schema, model, models } from "mongoose";
+import { ObjectId } from "mongodb";
+import mongoose from "mongoose";
 
-const PromptSchema = new Schema({
+const promptSchema = new mongoose.Schema({
   user: {
-    type: Schema.Types.ObjectId,
+    type: ObjectId,
     ref: "User",
-    required: [true, "User is required"],
+    required: [true, "User is required."],
   },
   prompt: {
     type: String,
-    required: [true, "Prompt is required"],
+    required: [true, "Prompt is required."],
   },
   category: {
     type: String,
-    required: [true, "Category is required"],
+    required: [true, "Category is required."],
   },
 });
 
-const Prompt = models.Prompt || model("Prompt", PromptSchema);
-
-export default Prompt;
+export default mongoose.models["Prompt"] ||
+  mongoose.model("Prompt", promptSchema);

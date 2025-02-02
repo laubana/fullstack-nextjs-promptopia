@@ -1,12 +1,11 @@
 import mongoose from "mongoose";
 
-const connect = async () => {
+export const connect = async () => {
   try {
-    mongoose.set("strictQuery", true);
-    await mongoose.connect(process.env.MONGO_URI);
+    await mongoose.connect(process.env.DB_URI);
   } catch (error) {
-    console.error(error);
+    console.log(error);
+
+    console.error("Failed to connect to DB 🚨");
   }
 };
-
-export { connect };

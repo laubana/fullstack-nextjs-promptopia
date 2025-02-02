@@ -1,5 +1,5 @@
 import { connect } from "@configs/db";
-import Prompt from "@models/prompt";
+import Prompt from "@models/Prompt";
 
 export const GET = async (req, { params }) => {
   try {
@@ -7,20 +7,29 @@ export const GET = async (req, { params }) => {
 
     await connect();
 
-    const prompt = await Prompt.findById(promptId).populate({
-      path: "user",
-    });
+    const existingPrompt = await Prompt.findById(promptId)
+      .populate({
+        path: "user",
+      })
+      .lean();
 
-    if (prompt) {
-      return new Response(JSON.stringify({ message: "", data: prompt }), {
-        status: 200,
-      });
+    if (existingPrompt) {
+      return new Response(
+        JSON.stringify({ message: "", data: existingPrompt }),
+        {
+          status: 200,
+        }
+      );
     } else {
-      return new Response(JSON.stringify({ message: "" }), { status: 404 });
+      return new Response(JSON.stringify({ message: "Prompt not found." }), {
+        status: 404,
+      });
     }
   } catch (error) {
     console.error(error);
 
-    return new Response(JSON.stringify({ message: "" }), { status: 500 });
+    return new Response(JSON.stringify({ message: "Server Error" }), {
+      status: 500,
+    });
   }
 };

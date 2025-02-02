@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { BeatLoader } from "react-spinners";
+
 import PromptCard from "@components/PromptCard";
 
 const Feed = ({ prompts = [], onEdit, onDelete, owned }) => {

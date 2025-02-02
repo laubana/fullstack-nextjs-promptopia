@@ -16,6 +16,12 @@ const PromptEditView = ({ params }) => {
     setIsSubmitting(true);
 
     try {
+      if (!form.prompt || !form.category) {
+        alert("Invalid Input");
+
+        return;
+      }
+
       const response = await fetch("/api/prompt", {
         method: "PUT",
         body: JSON.stringify({

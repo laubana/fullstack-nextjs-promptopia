@@ -1,5 +1,5 @@
 import { connect } from "@configs/db";
-import User from "@models/user";
+import User from "@models/User";
 
 export const GET = async (req, { params }) => {
   try {
@@ -7,18 +7,22 @@ export const GET = async (req, { params }) => {
 
     await connect();
 
-    const user = await User.findById(userId);
+    const existingUser = await User.findById(userId).lean();
 
-    if (user) {
-      return new Response(JSON.stringify({ message: "", data: user }), {
+    if (existingUser) {
+      return new Response(JSON.stringify({ message: "", data: existingUser }), {
         status: 200,
       });
     } else {
-      return new Response(JSON.stringify({ message: "" }), { status: 404 });
+      return new Response(JSON.stringify({ message: "User not found" }), {
+        status: 404,
+      });
     }
   } catch (error) {
     console.error(error);
 
-    return new Response(JSON.stringify({ message: "" }), { status: 500 });
+    return new Response(JSON.stringify({ message: "Server Error" }), {
+      status: 500,
+    });
   }
 };

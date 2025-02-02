@@ -3,8 +3,9 @@
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import Profile from "@components/Profile";
+
 import Feed from "@components/Feed";
+import Profile from "@components/Profile";
 
 const ProfileView = ({ params }) => {
   const { data: session, status } = useSession();
