@@ -14,7 +14,7 @@ export const GET = async (req, { params }) => {
         status: 200,
       });
     } else {
-      return new Response(JSON.stringify({ message: "User not found" }), {
+      return new Response(JSON.stringify({ message: "No user found." }), {
         status: 404,
       });
     }

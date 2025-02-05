@@ -21,7 +21,7 @@ export const GET = async (req, { params }) => {
         }
       );
     } else {
-      return new Response(JSON.stringify({ message: "Prompt not found." }), {
+      return new Response(JSON.stringify({ message: "No prompt found." }), {
         status: 404,
       });
     }
