@@ -1,9 +1,8 @@
-import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
 
 const promptSchema = new mongoose.Schema({
   user: {
-    type: ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: [true, "User is required."],
   },

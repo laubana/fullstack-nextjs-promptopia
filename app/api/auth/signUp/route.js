@@ -1,5 +1,5 @@
+import dbConfig from "@configs/dbConfig";
 import session from "@middlewares/session";
-import { connect } from "@configs/db";
 import User from "@models/User";
 
 export const POST = async (req, { params }) => {
@@ -13,7 +13,7 @@ export const POST = async (req, { params }) => {
         });
       }
 
-      await connect();
+      await dbConfig.connect();
 
       const newUser = await User.create({
         email,

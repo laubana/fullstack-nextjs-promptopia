@@ -21,7 +21,7 @@ const Navigation = () => {
     <nav className="flex items-center justify-between mb-16 pt-3 w-full">
       <Link href="/" className="flex gap-3 items-center justify-center">
         <Image
-          src="/assets/images/logo.svg"
+          src="/images/logo.svg"
           width={36}
           height={36}
           className="object-contain"

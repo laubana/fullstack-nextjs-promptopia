@@ -1,11 +1,11 @@
-import { connect } from "@configs/db";
+import dbConfig from "@configs/dbConfig";
 import User from "@models/User";
 
 export const GET = async (req, { params }) => {
   try {
     const { userId } = params;
 
-    await connect();
+    await dbConfig.connect();
 
     const existingUser = await User.findById(userId).lean();
 

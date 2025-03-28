@@ -1,5 +1,5 @@
+import dbConfig from "@configs/dbConfig";
 import session from "@middlewares/session";
-import { connect } from "@configs/db";
 import Prompt from "@models/Prompt";
 
 export const POST = async (req, { params }) => {
@@ -14,7 +14,7 @@ export const POST = async (req, { params }) => {
         });
       }
 
-      await connect();
+      await dbConfig.connect();
 
       const newPrompt = await Prompt.create({
         user: userId,
@@ -47,7 +47,7 @@ export const DELETE = async (req, { params }) => {
       const { promptId } = await req.json();
       const id = req.id;
 
-      await connect();
+      await dbConfig.connect();
 
       const oldPrompt = await Prompt.findById(promptId)
         .populate({
@@ -85,7 +85,7 @@ export const PUT = async (req, { params }) => {
       const { promptId, prompt, category } = await req.json();
       const id = req.id;
 
-      await connect();
+      await dbConfig.connect();
 
       const oldPrompt = await Prompt.findById(promptId)
         .populate({

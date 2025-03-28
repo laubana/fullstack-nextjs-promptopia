@@ -1,9 +1,9 @@
-import { connect } from "@configs/db";
+import dbConfig from "@configs/dbConfig";
 import Prompt from "@models/Prompt";
 
 export const GET = async (req, { params }) => {
   try {
-    await connect();
+    await dbConfig.connect();
 
     const existingPrompts = await Prompt.find()
       .populate({

@@ -2,7 +2,7 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 
-import { connect } from "@configs/db";
+import dbConfig from "@configs/dbConfig";
 import User from "@models/User";
 
 export const authOptions = {
@@ -30,7 +30,7 @@ export const authOptions = {
     },
     signIn: async ({ account, profile, credentials }) => {
       try {
-        await connect();
+        await dbConfig.connect();
 
         const user = await User.findOne({
           email: profile?.email || credentials?.email,

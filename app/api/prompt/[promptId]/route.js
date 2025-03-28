@@ -1,11 +1,11 @@
-import { connect } from "@configs/db";
+import dbConfig from "@configs/dbConfig";
 import Prompt from "@models/Prompt";
 
 export const GET = async (req, { params }) => {
   try {
     const { promptId } = params;
 
-    await connect();
+    await dbConfig.connect();
 
     const existingPrompt = await Prompt.findById(promptId)
       .populate({
